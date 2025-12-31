@@ -282,3 +282,31 @@
             position: absolute;
             inset: 0;
         }
+
+
+/* MOBILE OPTIMIZATIONS */
+@media (max-width: 768px) {
+    .title { font-size: 2.8rem; letter-spacing: 4px; }
+    .subtitle { font-size: 1.2rem; }
+    #nameInput { width: 80%; font-size: 1rem; }
+    .countdown-grid { gap: 12px; }
+    .time-box { width: 90px; height: 110px; }
+    .time-box span { font-size: 2rem; }
+    .time-box small { font-size: 0.75rem; }
+    .line1 { font-size: 2.2rem; letter-spacing: 4px; }
+    .line2 { font-size: 6rem; }
+    .wish { font-size: 1.2rem; margin-top: 15px; }
+}
+
+@media (max-width: 480px) {
+    .title { font-size: 2rem; letter-spacing: 2px; }
+    .subtitle { font-size: 1rem; }
+    #nameInput { width: 90%; font-size: 0.95rem; padding: 10px 14px; }
+    .countdown-grid { gap: 8px; }
+    .time-box { width: 70px; height: 90px; }
+    .time-box span { font-size: 1.5rem; }
+    .time-box small { font-size: 0.6rem; }
+    .line1 { font-size: 1.8rem; letter-spacing: 2px; }
+    .line2 { font-size: 4.5rem; }
+    .wish { font-size: 1rem; margin-top: 10px; }
+}

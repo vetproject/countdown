@@ -1,4 +1,5 @@
-/* COUNTDOWN TIME (for demo: 10s) */
+/* ===== COUNTDOWN TIME ===== */
+// For demo, 10 seconds. Replace with your target date for production
 // const targetTime = new Date("2026-01-01T00:00:00").getTime();
 const targetTime = Date.now() + 10000;
 
@@ -14,16 +15,18 @@ const fwCanvas = document.getElementById("fireworks");
 const fwCtx = fwCanvas.getContext("2d");
 const starCanvas = document.getElementById("stars");
 const sCtx = starCanvas.getContext("2d");
+const confettiCanvas = document.getElementById('confetti');
+const ctx = confettiCanvas.getContext('2d');
 
-/* RESIZE */
+/* ===== RESIZE CANVASES ===== */
 function resize() {
-    fwCanvas.width = starCanvas.width = innerWidth;
-    fwCanvas.height = starCanvas.height = innerHeight;
+    fwCanvas.width = starCanvas.width = confettiCanvas.width = window.innerWidth;
+    fwCanvas.height = starCanvas.height = confettiCanvas.height = window.innerHeight;
 }
 resize();
-addEventListener("resize", resize);
+window.addEventListener("resize", resize);
 
-/* COUNTDOWN */
+/* ===== COUNTDOWN FUNCTION ===== */
 const timer = setInterval(() => {
     let diff = targetTime - Date.now();
     if (diff <= 0) {
@@ -44,10 +47,16 @@ const timer = setInterval(() => {
     sEl.textContent = String(s).padStart(2, "0");
 }, 1000);
 
-/* STARFIELD */
+/* ===== STARFIELD ===== */
 let stars = [];
-for (let i = 0; i < 300; i++) {
-    stars.push({ x: Math.random() * innerWidth, y: Math.random() * innerHeight, r: Math.random() * 1.5, v: Math.random() * 0.4 + 0.1 });
+const starCount = window.innerWidth < 480 ? 150 : 300;
+for (let i = 0; i < starCount; i++) {
+    stars.push({
+        x: Math.random() * window.innerWidth,
+        y: Math.random() * window.innerHeight,
+        r: Math.random() * 1.5,
+        v: Math.random() * 0.4 + 0.1
+    });
 }
 
 function drawStars() {
@@ -56,7 +65,7 @@ function drawStars() {
     sCtx.fillStyle = "white";
     stars.forEach(star => {
         star.y += star.v;
-        if (star.y > innerHeight) star.y = 0;
+        if (star.y > window.innerHeight) star.y = 0;
         sCtx.beginPath();
         sCtx.arc(star.x, star.y, star.r, 0, Math.PI * 2);
         sCtx.fill();
@@ -64,8 +73,8 @@ function drawStars() {
     requestAnimationFrame(drawStars);
 }
 
-/* SOUND */
-const audioCtx = new (AudioContext || webkitAudioContext)();
+/* ===== SOUND EFFECT ===== */
+const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
 function boom() {
     const o = audioCtx.createOscillator();
     const g = audioCtx.createGain();
@@ -78,9 +87,11 @@ function boom() {
     o.stop(audioCtx.currentTime + 1.2);
 }
 
+/* ===== HELPER ===== */
 function random(min, max) { return Math.random() * (max - min) + min; }
 const colors = ["#ffcc88", "#ffd700", "#ff99cc", "#99ddff", "#ffffff"];
 
+/* ===== PARTICLE CLASS ===== */
 class Particle {
     constructor(x, y, color, type = "normal") {
         const a = random(0, Math.PI * 2);
@@ -116,11 +127,12 @@ class Particle {
     }
 }
 
+/* ===== FIREWORK CLASS ===== */
 class Firework {
     constructor() {
-        this.x = random(100, innerWidth - 100);
-        this.y = innerHeight;
-        this.target = random(120, innerHeight / 2);
+        this.x = random(100, window.innerWidth - 100);
+        this.y = window.innerHeight;
+        this.target = random(120, window.innerHeight / 2);
         this.speed = random(6, 9);
         this.color = colors[Math.floor(Math.random() * colors.length)];
         this.exploded = false;
@@ -138,8 +150,8 @@ class Firework {
             if (this.y <= this.target) {
                 this.exploded = true;
                 boom();
-                for (let i = 0; i < 70; i++) this.particles.push(new Particle(this.x, this.y, this.color));
-                for (let i = 0; i < 30; i++) this.particles.push(new Particle(this.x, this.y, this.color, "long"));
+                const pCount = window.innerWidth < 480 ? 50 : 100;
+                for (let i = 0; i < pCount; i++) this.particles.push(new Particle(this.x, this.y, this.color));
             }
         }
     }
@@ -158,30 +170,10 @@ function animate() {
     requestAnimationFrame(animate);
 }
 
-function startCelebration() {
-    // Get the name input
-    const name = document.getElementById("nameInput").value.trim();
-    const wishEl = document.querySelector(".wish");
-    if (name) {
-        wishEl.textContent = `${name}, Wishing you a year full of joy, success, love, laughter, adventure, good health, and unforgettable moments!`;
-    }
-
-    countdownBox.style.display = "none";
-    celebration.style.display = "block";
-    document.documentElement.requestFullscreen?.();
-    drawStars();
-    setInterval(() => fireworks.push(new Firework()), 400);
-    animate();
-}
-
-/* Confetti Animation */
-const confettiCanvas = document.getElementById('confetti');
-const ctx = confettiCanvas.getContext('2d');
-confettiCanvas.width = window.innerWidth;
-confettiCanvas.height = window.innerHeight;
-
+/* ===== CONFETTI ===== */
+const confettiCount = window.innerWidth < 480 ? 80 : 150;
 const confettis = [];
-for (let i = 0; i < 150; i++) {
+for (let i = 0; i < confettiCount; i++) {
     confettis.push({
         x: Math.random() * confettiCanvas.width,
         y: Math.random() * confettiCanvas.height,
@@ -191,7 +183,6 @@ for (let i = 0; i < 150; i++) {
         tilt: Math.random() * 10 - 10
     });
 }
-
 function drawConfetti() {
     ctx.clearRect(0, 0, confettiCanvas.width, confettiCanvas.height);
     confettis.forEach(f => {
@@ -211,7 +202,29 @@ function drawConfetti() {
 }
 drawConfetti();
 
+/* ===== START CELEBRATION ===== */
+function startCelebration() {
+    const name = document.getElementById("nameInput").value.trim();
+    const wishEl = document.querySelector(".wish");
+    if (name) {
+        wishEl.textContent = `${name}, Wishing you a year full of joy, success, love, laughter, adventure, good health, and unforgettable moments!`;
+    }
+
+    countdownBox.style.display = "none";
+    celebration.style.display = "block";
+    document.documentElement.requestFullscreen?.();
+
+    drawStars();
+
+    setInterval(() => {
+        if (window.innerWidth < 480 && fireworks.length > 5) return; // limit on small screens
+        fireworks.push(new Firework());
+    }, 500);
+
+    animate();
+}
+
+/* ===== RESIZE HANDLER ===== */
 window.addEventListener('resize', () => {
-    confettiCanvas.width = window.innerWidth;
-    confettiCanvas.height = window.innerHeight;
+    resize();
 });
