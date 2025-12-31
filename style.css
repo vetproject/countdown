@@ -19,7 +19,7 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            background: linear-gradient(-45deg, #0f2027, #203a43, #2c5364, #0f2027);
+            background: #000;
             background-size: 400% 400%;
             animation: gradientBG 15s ease infinite;
             text-align: center;
@@ -51,7 +51,7 @@
             background: linear-gradient(90deg, #ffd700, #ff8c00, #ff4500, #ffd700);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            text-shadow: 0 0 20px gold, 0 0 40px orange;
+            /* text-shadow: 0 0 20px gold, 0 0 40px orange; */
             margin-bottom: 10px;
             animation: glowText 2s ease-in-out infinite alternate;
         }
@@ -282,87 +282,158 @@
             position: absolute;
             inset: 0;
         }
-/* RESPONSIVE DESIGN LANDSCAPE */
-/* LANDSCAPE OPTIMIZATIONS - SMALLER & COMPACT */
-@media (min-aspect-ratio: 16/9) {
-    /* Title smaller and tighter */
-    .title {
-        font-size: 2.2rem;
-        letter-spacing: 3px;
-    }
 
-    .subtitle {
-        font-size: 1rem;
-    }
+        /* RESPONSIVE DESIGN LANDSCAPE */
+        /* LANDSCAPE OPTIMIZATIONS - SMALLER & COMPACT */
+        @media (min-aspect-ratio: 16/9) {
 
-    /* Input smaller and more compact */
-    #nameInput {
-        width: 40%;
-        font-size: 0.95rem;
-        padding: 10px 14px;
-    }
+            /* Title smaller and tighter */
+            .title {
+                font-size: 2.2rem;
+                letter-spacing: 3px;
+            }
 
-    /* Countdown grid tighter */
-    .countdown-grid {
-        gap: 12px;
-        justify-content: center;
-    }
+            .subtitle {
+                font-size: 1rem;
+            }
 
-    .time-box {
-        width: 80px;
-        height: 100px;
-    }
+            /* Input smaller and more compact */
+            #nameInput {
+                width: 40%;
+                font-size: 0.95rem;
+                padding: 10px 14px;
+            }
 
-    .time-box span {
-        font-size: 2rem;
-    }
+            /* Countdown grid tighter */
+            .countdown-grid {
+                gap: 12px;
+                justify-content: center;
+            }
 
-    .time-box small {
-        font-size: 0.75rem;
-    }
+            .time-box {
+                width: 80px;
+                height: 100px;
+            }
 
-    /* Celebration text smaller for landscape */
-    .line1 {
-        font-size: 2rem;
-        letter-spacing: 2px;
-    }
+            .time-box span {
+                font-size: 2rem;
+            }
 
-    .line2 {
-        font-size: 4.5rem;
-    }
+            .time-box small {
+                font-size: 0.75rem;
+            }
 
-    .wish {
-        font-size: 1.2rem;
-        margin-top: 15px;
-        padding: 15px;
-    }
-}
+            /* Celebration text smaller for landscape */
+            .line1 {
+                font-size: 2rem;
+                letter-spacing: 2px;
+            }
+
+            .line2 {
+                font-size: 4.5rem;
+            }
+
+            .wish {
+                font-size: 1.2rem;
+                margin-top: 15px;
+                padding: 15px;
+            }
+        }
 
 
 
-/* MOBILE OPTIMIZATIONS */
-@media (max-width: 768px) {
-    .title { font-size: 2.8rem; letter-spacing: 4px; }
-    .subtitle { font-size: 1.2rem; }
-    #nameInput { width: 80%; font-size: 1rem; }
-    .countdown-grid { gap: 12px; }
-    .time-box { width: 90px; height: 110px; }
-    .time-box span { font-size: 2rem; }
-    .time-box small { font-size: 0.75rem; }
-    .line1 { font-size: 2.2rem; letter-spacing: 4px; }
-    .line2 { font-size: 6rem; }
-    .wish { font-size: 1.2rem; margin-top: 15px; }
-}
+        /* MOBILE OPTIMIZATIONS */
+        @media (max-width: 768px) {
+            .title {
+                font-size: 2.8rem;
+                letter-spacing: 4px;
+            }
 
-@media (max-width: 480px) {
-    .title { font-size: 2rem; letter-spacing: 2px; }
-    .subtitle { font-size: 1rem; }
-    #nameInput { width: 90%; font-size: 0.95rem; padding: 10px 14px; }
-    .countdown-grid { gap: 8px; }
-    .time-box { width: 70px; height: 90px; }
-    .time-box span { font-size: 1.5rem; }
-    .time-box small { font-size: 0.6rem; }
-    .line1 { font-size: 1.8rem; letter-spacing: 2px; }
-    .line2 { font-size: 4.5rem; }
-    .wish { font-size: 1rem; margin-top: 10px; }
-}
+            .subtitle {
+                font-size: 1.2rem;
+            }
+
+            #nameInput {
+                width: 80%;
+                font-size: 1rem;
+            }
+
+            .countdown-grid {
+                gap: 12px;
+            }
+
+            .time-box {
+                width: 90px;
+                height: 110px;
+            }
+
+            .time-box span {
+                font-size: 2rem;
+            }
+
+            .time-box small {
+                font-size: 0.75rem;
+            }
+
+            .line1 {
+                font-size: 2.2rem;
+                letter-spacing: 4px;
+            }
+
+            .line2 {
+                font-size: 6rem;
+            }
+
+            .wish {
+                font-size: 1.2rem;
+                margin-top: 15px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .title {
+                font-size: 2rem;
+                letter-spacing: 2px;
+            }
+
+            .subtitle {
+                font-size: 1rem;
+            }
+
+            #nameInput {
+                width: 90%;
+                font-size: 0.95rem;
+                padding: 10px 14px;
+            }
+
+            .countdown-grid {
+                gap: 8px;
+            }
+
+            .time-box {
+                width: 70px;
+                height: 90px;
+            }
+
+            .time-box span {
+                font-size: 1.5rem;
+            }
+
+            .time-box small {
+                font-size: 0.6rem;
+            }
+
+            .line1 {
+                font-size: 1.8rem;
+                letter-spacing: 2px;
+            }
+
+            .line2 {
+                font-size: 4.5rem;
+            }
+
+            .wish {
+                font-size: 1rem;
+                margin-top: 10px;
+            }
+        }
