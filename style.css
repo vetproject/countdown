@@ -1,0 +1,284 @@
+        @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Roboto:wght@400;700&display=swap');
+
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            overflow: hidden;
+            font-family: Arial, Helvetica, sans-serif;
+            background: black;
+            color: white;
+        }
+
+        /* Countdown Container */
+        #countdownBox {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(-45deg, #0f2027, #203a43, #2c5364, #0f2027);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            text-align: center;
+            color: #ffd700;
+            overflow: hidden;
+            padding: 20px;
+        }
+
+        /* Background gradient animation */
+        @keyframes gradientBG {
+            0% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        /* Title */
+        .title {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 4rem;
+            letter-spacing: 6px;
+            background: linear-gradient(90deg, #ffd700, #ff8c00, #ff4500, #ffd700);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 20px gold, 0 0 40px orange;
+            margin-bottom: 10px;
+            animation: glowText 2s ease-in-out infinite alternate;
+        }
+
+        /* Subtitle */
+        .subtitle {
+            font-family: 'Roboto', sans-serif;
+            font-size: 1.5rem;
+            color: #fff;
+            opacity: 0.85;
+            margin-bottom: 25px;
+        }
+
+        /* Name Input */
+        #nameInput {
+            padding: 12px 18px;
+            font-size: 1.1rem;
+            border-radius: 10px;
+            border: 2px solid #ffd700;
+            outline: none;
+            background: rgba(255, 255, 255, 0.05);
+            color: #ffd700;
+            text-align: center;
+            margin-bottom: 30px;
+            box-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+            transition: all 0.3s ease;
+            animation: pulseInput 2s ease-in-out infinite alternate;
+        }
+
+        #nameInput::placeholder {
+            color: rgba(255, 215, 0, 0.6);
+        }
+
+        #nameInput:focus {
+            box-shadow: 0 0 30px rgba(255, 215, 0, 1);
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        /* Countdown Boxes */
+        .countdown-grid {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            justify-content: center;
+            perspective: 1000px;
+        }
+
+        .time-box {
+            width: 120px;
+            height: 140px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(12px);
+            border-radius: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+        }
+
+        .time-box:hover {
+            transform: rotateY(10deg) scale(1.1);
+            box-shadow: 0 0 40px rgba(255, 215, 0, 0.9);
+        }
+
+        .time-box span {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 3rem;
+            font-weight: bold;
+            color: #ffd700;
+            text-shadow: 0 0 10px gold, 0 0 20px orange;
+        }
+
+        .time-box small {
+            margin-top: 5px;
+            font-size: 0.9rem;
+            color: #fff;
+            opacity: 0.85;
+        }
+
+        /* Seconds special glow */
+        .seconds span {
+            color: #ffcc00;
+            animation: pulse 1s infinite;
+        }
+
+        /* Animations */
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.08);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        @keyframes glowText {
+            0% {
+                text-shadow: 0 0 10px gold, 0 0 20px orange;
+            }
+
+            100% {
+                text-shadow: 0 0 25px gold, 0 0 50px orange;
+            }
+        }
+
+        @keyframes pulseInput {
+            0% {
+                box-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+            }
+
+            100% {
+                box-shadow: 0 0 25px rgba(255, 215, 0, 1);
+            }
+        }
+
+        /* Confetti Canvas */
+        #confetti {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+        }
+
+        /* CELEBRATION */
+        #celebration {
+            display: none;
+            position: absolute;
+            inset: 0;
+            background: black;
+            z-index: 10;
+        }
+
+        #message {
+            position: absolute;
+            top: 30%;
+            width: 100%;
+            text-align: center;
+            pointer-events: none;
+            z-index: 10;
+        }
+
+        /* Top line */
+        .line1 {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 3.5rem;
+            letter-spacing: 8px;
+            background: linear-gradient(90deg, #ffd700, #ff8c00, #ff4500);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 30px gold, 0 0 60px orange;
+            animation: fadeInUp 1.5s ease-out forwards;
+        }
+
+        /* Big year number */
+        .line2 {
+            font-family: 'Roboto', sans-serif;
+            font-size: 8rem;
+            font-weight: 900;
+            margin-top: 15px;
+            background: radial-gradient(circle, #ffffff, #ffdd00, #ff8c00);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow:
+                0 0 30px #fff,
+                0 0 60px gold,
+                0 0 100px orange;
+            animation: zoomGlow 2s ease-out forwards;
+            transform-origin: center;
+        }
+
+        /* Wish message */
+        .wish {
+            font-family: 'Roboto', sans-serif;
+            font-size: 1.8rem;
+            color: #ffffff;
+            text-shadow: 0 0 10px #fff, 0 0 20px gold;
+            margin-top: 25px;
+            opacity: 0;
+            animation: fadeIn 2.5s ease-out forwards;
+            animation-delay: 2s;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes zoomGlow {
+            0% {
+                opacity: 0;
+                transform: scale(0.5);
+                filter: blur(2px);
+            }
+
+            60% {
+                opacity: 1;
+                transform: scale(1.2);
+                filter: blur(0);
+            }
+
+            100% {
+                transform: scale(1);
+                filter: blur(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+            }
+        }
+
+        canvas {
+            position: absolute;
+            inset: 0;
+        }
