@@ -1,7 +1,7 @@
 /* ===== COUNTDOWN TIME ===== */
 // For demo, 10 seconds. Replace with your target date for production
-const targetTime = new Date("2026-01-01T00:00:00").getTime();
-// const targetTime = Date.now() + 10000;
+// const targetTime = new Date("2026-01-01T00:00:00").getTime();
+const targetTime = Date.now() + 10000;
 
 const dEl = document.getElementById("days");
 const hEl = document.getElementById("hours");
